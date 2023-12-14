@@ -32,4 +32,10 @@ WORKDIR /catkin_ws
 RUN source /opt/ros/noetic/setup.bash \
     && catkin_make
 
+# set DISPLAY variable
+ENV DISPLAY=:1
+
 RUN echo source /catkin_ws/devel/setup.bash >> ~/.bashrc
+
+# launch Gazebo
+CMD /bin/bash -c "source devel/setup.bash; roslaunch tortoisebot_gazebo tortoisebot_playground.launch"
