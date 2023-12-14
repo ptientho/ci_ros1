@@ -28,6 +28,8 @@ RUN git clone --recursive https://github.com/rigbetellabs/tortoisebot.git
 RUN git clone https://github.com/ptientho/tortoisebot_waypoints.git
 RUN git clone https://github.com/ptientho/tortoisebot_waypoints_interface.git
 
+COPY tortoisebot_empty_world.launch tortoisebot/tortoisebot_gazebo/launch/
+
 WORKDIR /catkin_ws
 RUN source /opt/ros/noetic/setup.bash \
     && catkin_make
@@ -36,6 +38,3 @@ RUN source /opt/ros/noetic/setup.bash \
 ENV DISPLAY=:1
 
 RUN echo source /catkin_ws/devel/setup.bash >> ~/.bashrc
-
-# launch Gazebo
-CMD /bin/bash -c "source devel/setup.bash; roslaunch tortoisebot_gazebo tortoisebot_playground.launch"
